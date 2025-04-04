@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub - Login/SignUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container"></div>
+    <header class="header">
+        <div class="logo">
+            <img src="C:\Users\Aakan\StudyHubMain\frontend\assets\StudyHubLogo.png" alt="StudyHub Logo">
+            <h1>StudyHub</h1>
+        </div>
+        <nav class="nav">
+            <button class="button type1" id="loginSignupButton">
+                <span class="btn-txt">Login/SignUp</span>
+            </button>
+            <a href="about.html" class="button type1">
+                <span class="btn-txt">About</span>
+            </a>
+            <a href="contact.html" class="button type1">
+                <span class="btn-txt">Contact</span>
+            </a>
+        </nav>
+    </header>
+    
+    <main class="main-content">
+        <section class="hero">
+            <h1>Create a Meet or Access Notes</h1>
+            <button class="cta-button" onclick="window.open('meet.html', '_blank')"><span>New Meet</span></button>
+            <button class="cta-button" onclick="window.location.href='notes.html';"><span>Notes</span></button>
+
+
+
+        </section>
+        
+        
+        
+
+        <!-- Overlay Background -->
+        <div id="overlay" class="overlay"></div>
+
+        <!-- Login/SignUp Flip Card Section -->
+        <section class="wrapper" id="loginSignupForm">
+            <div class="card-switch">
+                <label class="switch">
+                    <input class="toggle" type="checkbox">
+                    <span class="slider"></span>
+                    <span class="card-side"></span>
+                    <div class="flip-card__inner">
+                        <div class="flip-card__front">
+                            <div class="title">Log in</div>
+                            <form action="" class="flip-card__form">
+                                <input type="email" placeholder="Email" name="email" class="flip-card__input">
+                                <input type="password" placeholder="Password" name="password" class="flip-card__input">
+                                <button class="flip-card__btn">Let`s go!</button>
+                            </form>
+                        </div>
+                        <div class="flip-card__back">
+                            <div class="title">Sign up</div>
+                            <form action="" class="flip-card__form">
+                                <input type="name" placeholder="Name" class="flip-card__input">
+                                <input type="email" placeholder="Email" name="email" class="flip-card__input">
+                                <input type="password" placeholder="Password" name="password" class="flip-card__input">
+                                <button class="flip-card__btn">Confirm!</button>
+                            </form>
+                        </div>
+                    </div>
+                </label>
+            </div>   
+        </section>
+
+        
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="cards-wrapper">
+                <!-- Card 1 -->
+                <div class="box">
+                    <span class="title"></span>
+                    <div>
+                        <strong>Aakanksh S Kallihal</strong>
+                        <p>1RN22IS001</p>
+                        <span>ISE</span> <span>RNSIT</span>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="box">
+                    <span class="title"></span>
+                    <div>
+                        <strong>Adithya M</strong>
+                        <p>1RN22IS006</p>
+                        <span>ISE</span> <span>RNSIT</span>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="box">
+                    <span class="title"></span>
+                    <div>
+                        <strong>Chethan M</strong>
+                        <p>1RN22IS031</p>
+                        <span>ISE</span> <span>RNSIT</span>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="box">
+                    <span class="title"></span>
+                    <div>
+                        <strong>Harshitha P</strong>
+                        <p>1RN22IS049</p>
+                        <span>ISE</span> <span>RNSIT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2024 StudyHub. All Rights Reserved.</p>
+    </footer>       
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

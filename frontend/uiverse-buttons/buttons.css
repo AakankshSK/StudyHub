@@ -1,0 +1,17 @@
+/* Aesthetic Button Styles from uiverse.io */
+.uiverse-btn {
+    background-color: #0066ff;
+    border-radius: var(--border-radius);
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.uiverse-btn:hover {
+    background-color: #0052cc;
+}
+
+.uiverse-btn:active {
+    transform: scale(0.95);
+}

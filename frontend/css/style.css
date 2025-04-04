@@ -1,0 +1,870 @@
+/* Global Styles */
+/* Background Container */
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    --s: 82px;
+    --c1: #b2b2b2;
+    --c2: #ffffff;
+    --c3: #d9d9d9;
+
+    --_g: var(--c3) 0 120deg, #0000 0;
+    background: conic-gradient(from -60deg at 50% calc(100% / 3), var(--_g)),
+        conic-gradient(from 120deg at 50% calc(200% / 3), var(--_g)),
+        conic-gradient(
+            from 60deg at calc(200% / 3),
+            var(--c3) 60deg,
+            var(--c2) 0 120deg,
+            #0000 0
+        ),
+        conic-gradient(from 180deg at calc(100% / 3), var(--c1) 60deg, var(--_g)),
+        linear-gradient(
+            90deg,
+            var(--c1) calc(100% / 6),
+            var(--c2) 0 50%,
+            var(--c1) 0 calc(500% / 6),
+            var(--c2) 0
+        );
+    background-size: calc(1.732 * var(--s)) var(--s);
+    z-index: -1; /* Ensure it stays in the background */
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* Button Styles */
+.button {
+    height: 50px;
+    width: 200px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #252525;
+    overflow: hidden;
+    border-radius: 30px;
+    color: #333; /* Default text color: black */
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-align: center;
+    transition: color 0.3s ease-in-out; /* Smooth text color transition */
+    margin-left: 15px; /* Spacing between buttons */
+    display: inline-flex; /* Ensures text alignment */
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* Remove underline for links */
+}
+
+.btn-txt {
+    z-index: 2; /* Keeps text above the animated background */
+    position: relative;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.type1::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Starts as a small dot */
+    width: 300%;
+    height: 300%;
+    background-color: #000; /* Black background for hover effect */
+    border-radius: 50%; /* Circular effect */
+    z-index: 1; /* Places it behind the text */
+    transition: transform 0.5s ease-in-out; /* Smooth scaling animation */
+}
+
+.button:hover .btn-txt {
+    color: #fff; /* Text turns white on hover */
+}
+
+.type1:hover::after {
+    transform: translate(-50%, -50%) scale(1); /* Expands the black background */
+}
+
+/* Link-Specific Styles */
+a.button {
+    text-decoration: none; /* Remove underline for links styled as buttons */
+}
+
+a.button .btn-txt {
+    position: relative; /* Ensure link text behaves like button text */
+}
+
+/* Overlay */
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent dark background */
+    z-index: 900; /* Below the modal */
+}
+
+.overlay.active {
+    display: block; /* Show overlay when modal is active */
+}
+
+/* Login/Signup Animation */
+.wrapper {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper.active {
+    display: flex; /* Show modal when active */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Switch Card */
+.switch {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 50px;
+    height: 20px;
+}
+
+.card-side::before {
+    position: absolute;
+    content: 'Log in';
+    left: -70px;
+    top: 0;
+    width: 100px;
+    text-decoration: underline;
+    color: #323232;
+    font-weight: 600;
+}
+
+.card-side::after {
+    position: absolute;
+    content: 'Sign up';
+    left: 70px;
+    top: 0;
+    width: 100px;
+    text-decoration: none;
+    color: #323232;
+    font-weight: 600;
+}
+
+.toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid #323232;
+    box-shadow: 4px 4px #323232;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+.slider:before {
+    box-sizing: border-box;
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border: 2px solid #323232;
+    border-radius: 5px;
+    left: -2px;
+    bottom: 2px;
+    background-color: #fff;
+    box-shadow: 0 3px 0 #323232;
+    transition: 0.3s;
+}
+
+.toggle:checked + .slider {
+    background-color: #2d8cf0;
+}
+
+.toggle:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+.toggle:checked ~ .card-side:before {
+    text-decoration: none;
+}
+
+.toggle:checked ~ .card-side:after {
+    text-decoration: underline;
+}
+
+/* Flip Card */
+.flip-card__inner {
+    width: 300px;
+    height: 350px;
+    position: relative;
+    background-color: transparent;
+    perspective: 1000px;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.toggle:checked ~ .flip-card__inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card__front, .flip-card__back {
+    padding: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: lightgrey;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid #323232;
+    box-shadow: 4px 4px #323232;
+}
+
+.flip-card__back {
+    width: 100%;
+    transform: rotateY(180deg);
+}
+
+.flip-card__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.title {
+    margin: 20px 0 20px 0;
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    color: #323232;
+}
+
+.flip-card__input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #323232;
+    background-color: #fff;
+    box-shadow: 4px 4px #323232;
+    font-size: 15px;
+    font-weight: 600;
+    color: #323232;
+    padding: 5px 10px;
+    outline: none;
+}
+
+.flip-card__btn {
+    margin: 20px 0 20px 0;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #323232;
+    background-color: #fff;
+    box-shadow: 4px 4px #323232;
+    font-size: 17px;
+    font-weight: 600;
+    color: #323232;
+    cursor: pointer;
+}
+
+/* Main Content */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #4a4a4a;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* New CTA Button Styles */
+.cta-button {
+    padding: 0.1em 0.25em;
+    width: 13em;
+    height: 4.2em;
+    background-color: #212121;
+    border: 0.08em solid #fff;
+    border-radius: 0.3em;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cta-button span {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0.4em;
+    width: 8.25em;
+    height: 2.5em;
+    background-color: #212121;
+    border-radius: 0.2em;
+    font-size: 1.5em;
+    color: #fff;
+    border: 0.08em solid #fff;
+    box-shadow: 0 0.4em 0.1em 0.019em #fff;
+}
+
+.cta-button span:hover {
+    transition: all 0.5s;
+    transform: translate(0, 0.4em);
+    box-shadow: 0 0 0 0 #fff;
+}
+
+.cta-button span:not(hover) {
+    transition: all 1s;
+}
+
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+/* About Page Styles */
+.about-container {
+    padding: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+.about-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #4a4a4a;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #ddd;
+}
+
+.features {
+    display: grid; /* Use grid layout for precise control */
+    grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+    gap: 30px;
+    justify-items: center; /* Center-align cards horizontally */
+    margin-top: 10px;
+}
+
+
+
+
+.feature {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(50% - 30px); /* Two features per row on large screens */
+    max-width: 600px;
+}
+
+.feature-icon img {
+    height: 60px;
+    width: 60px;
+    margin-right: 20px;
+}
+
+.feature-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feature-text p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .feature {
+        width: 100%; /* Full width for smaller screens */
+    }
+}
+
+/* Contact Page Styles */
+.contact-container {
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.contact-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #4a4a4a;
+    color: #fff;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.contact-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-hero p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* New Form Styles */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.message {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.form label {
+    position: relative;
+}
+
+.form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 5px;
+}
+
+.form label .input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.form label .input:valid + span {
+    color: green;
+}
+
+.input01 {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 5px;
+}
+
+.form label .input01 + span {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.form label .input01:placeholder-shown + span {
+    top: 40px;
+    font-size: 0.9em;
+}
+
+.form label .input01:focus + span,
+.form label .input01:valid + span {
+    top: 50px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.form label .input01:valid + span {
+    color: green;
+}
+
+.fancy {
+    background-color: transparent;
+    border: 2px solid #cacaca;
+    border-radius: 0px;
+    box-sizing: border-box;
+    color: #4a4a4a; /* Changed color to a darker gray */
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 390;
+    letter-spacing: 2px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 8px 30px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+}
+
+.fancy:hover {
+    color: #fff; /* White text only on hover */
+    background: #cacaca;
+}
+
+
+
+.contact-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border: 2px solid #4a4a4a;
+}
+
+.contact-form button {
+    align-self: flex-end;
+    background-color: #ff4500;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #ff6347;
+}
+
+/* New Card Styles */
+.card {
+    position: relative;
+    width: 250px;
+    height: 300px;
+    border-radius: 14px;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    margin: 15px;
+  }
+  
+  .card .bg {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 240px;
+    height: 290px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 2px solid white;
+  }
+  
+  .card .blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ff0000;
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 5s infinite ease;
+  }
+  
+  .card .feature-text {
+    z-index: 3;
+    text-align: center;
+  }
+  
+  .card .feature-text h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .card .feature-text p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  /* Blob Animation */
+  @keyframes blob-bounce {
+    0% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+    25% {
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+    50% {
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+    75% {
+      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+    100% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  }
+  
+ /* New Meet and Notes Button Styles */
+.cta-button {
+    padding: 0.1em 0.25em;
+    width: 13em;
+    height: 4.2em;
+    background-color: #212121;
+    border: 0.08em solid #fff;
+    border-radius: 0.3em;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cta-button span {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0.4em;
+    width: 8.25em;
+    height: 2.5em;
+    background-color: #212121;
+    border-radius: 0.2em;
+    font-size: 1.5em;
+    color: #fff;
+    border: 0.08em solid #fff;
+    box-shadow: 0 0.4em 0.1em 0.019em #fff;
+}
+
+.cta-button span:hover {
+    transition: all 0.5s;
+    transform: translate(0, 0.4em);
+    box-shadow: 0 0 0 0 #fff;
+}
+
+.cta-button span:not(hover) {
+    transition: all 1s;
+}
+
+html, body {
+    height: 100%; /* Makes the body span the entire height of the viewport */
+    margin: 0;    /* Removes any default margin */
+    display: flex;
+    flex-direction: column; /* Aligns content vertically */
+}
+
+.main-content {
+    flex: 1; /* Pushes the footer to the bottom by taking up the available space */
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333; /* Adjust as per design */
+    color: #fff;           /* Adjust text color */
+    flex-shrink: 0;        /* Prevents the footer from shrinking */
+}
+
+/* Footer Cards Styling */
+/* Footer Styles */
+.footer {
+    text-align: center;
+    padding: 10px 0; /* Reduce padding */
+    background-color: #333;
+    color: #fff;
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+}
+
+/* Footer Container Styles */
+.footer-container {
+    max-width: 1200px; /* Limit the width of the footer container */
+    margin: 0 auto; /* Center align */
+    padding: 10px 20px;
+}
+
+/* Cards Wrapper */
+.cards-wrapper {
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center; /* Center align items horizontally */
+    gap: 20px; /* Add spacing between cards */
+    padding: 10px 0; /* Add some padding */
+}
+
+/* Individual Card Styles */
+.box {
+    flex: 1 1 calc(25% - 20px); /* Ensure cards take up a quarter of the row with a gap */
+    max-width: 250px; /* Set a maximum width for the cards */
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.074);
+    border: 1px solid rgba(255, 255, 255, 0.222);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: 0.7rem;
+    transition: all ease 0.3s;
+}
+
+.box:hover {
+    box-shadow: 0px 0px 20px 1px #ffbb763f;
+    border: 1px solid rgba(255, 255, 255, 0.454);
+}
+
+.box .title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.box div strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1em;
+}
+
+.box div p {
+    margin: 0;
+    font-size: 0.85em;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.box div span {
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+

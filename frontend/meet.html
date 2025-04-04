@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub Meet</title>
+    <link rel="stylesheet" href="css/meet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="meeting-container">
+        <!-- Video Grid Area -->
+        <div class="video-grid" id="video-grid">
+            <div class="video-container" id="local-video-container">
+                <video id="local-video" autoplay muted playsinline></video>
+                <div class="video-label">You</div>
+            </div>
+            <!-- Remote videos will be added here dynamically -->
+        </div>
+
+        <!-- Meeting Controls -->
+        <div class="controls">
+            <button class="control-btn" data-label="Mute" id="mute-btn">
+                <i class="fas fa-microphone"></i>
+            </button>
+            <button class="control-btn" data-label="Video" id="video-btn">
+                <i class="fas fa-video"></i>
+            </button>
+            <button class="control-btn" data-label="Share" id="share-btn">
+                <i class="fas fa-desktop"></i>
+            </button>
+            <button class="control-btn" data-label="Chat" id="chat-btn">
+                <i class="fas fa-comment"></i>
+            </button>
+            <button class="control-btn" data-label="People" id="participants-btn">
+                <i class="fas fa-users"></i>
+            </button>
+            <button class="control-btn leave" data-label="Leave" id="leave-btn">
+                <i class="fas fa-phone-slash"></i>
+            </button>
+        </div>
+
+        <!-- Chatbox -->
+        <div class="chatbox">
+            <div class="chat-header">
+                <h3>Meeting Chat</h3>
+                <button class="chat-close" id="chat-close">&times;</button>
+            </div>
+            <div class="chat-body"></div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type a message...">
+                <button>Send</button>
+            </div>
+        </div>
+
+        <!-- Participants List -->
+        <div class="participants-list">
+            <div class="participants-header">
+                <h3>Participants</h3>
+                <button class="chat-close" id="participants-close">&times;</button>
+            </div>
+            <div class="participants-body">
+                <!-- Participants will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Socket.io for real-time communication -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <!-- PeerJS for WebRTC -->
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <script src="js/meet.js"></script>
+</body>
+</html>

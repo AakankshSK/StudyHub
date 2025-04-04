@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyHub Notes</title>
+    <link rel="stylesheet" href="css/notes.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="C:\Users\Aakan\StudyHubMain\frontend\assets\StudyHubLogo.png" alt="StudyHub Logo">
+            <h1>StudyHub</h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="button type1">
+                <span class="btn-txt">Home</span>
+            </a>
+        </nav>
+    </header>
+    
+
+    <main class="notes-main">
+        <h1>Your Notes</h1>
+        <div class="add-note-container">
+            <input type="text" id="noteTitle" placeholder="Title" />
+            <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+            <input type="file" id="fileInput" multiple />
+            <button id="addNoteButton">Add Note</button>
+        </div>
+        <div id="notesContainer" class="notes-container"></div>
+    </main>
+
+    <script src="js/notes.js"></script>
+</body>
+</html>

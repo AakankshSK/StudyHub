@@ -1,0 +1,280 @@
+/* Notes Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.notes-main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.notes-main h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.add-note-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-note-container input,
+.add-note-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.add-note-container input:focus,
+.add-note-container textarea:focus {
+    border-color: #4caf50;
+    outline: none;
+}
+
+.add-note-container button {
+    padding: 10px;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.add-note-container button:hover {
+    background-color: #45a049;
+}
+
+.notes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.note-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.note-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.delete-button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+.note-content {
+    margin-bottom: 15px;
+}
+
+.note-content p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.note-meta {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.attachments {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.attachments a {
+    display: block;
+    color: #4CAF50;
+    text-decoration: none;
+    margin: 5px 0;
+    padding: 5px 0;
+}
+
+.attachments a:hover {
+    color: #388E3C;
+}
+
+.error-message,
+.success-message,
+.info-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 4px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.error-message {
+    background-color: #ff4444;
+}
+
+.success-message {
+    background-color: #4CAF50;
+}
+
+.info-message {
+    background-color: #2196F3;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Form styles */
+.add-note-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #388E3C;
+}
+
+/* Button styles */
+.button {
+    height: 50px;
+    width: 200px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #252525;
+    overflow: hidden;
+    border-radius: 30px;
+    color: #333;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+    margin-left: 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn-txt {
+    z-index: 2;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.type1::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 300%;
+    height: 300%;
+    background-color: #000;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
+}
+
+.button:hover .btn-txt {
+    color: #fff;
+}
+
+.type1:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
